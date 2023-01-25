@@ -19,6 +19,8 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         run: npm run test:ci
+        env: 
+          TESULTS_TOKEN: ${{ secrets.TESULTS_TOKEN }}
       - uses: actions/upload-artifact@v3
         if: always()
         with:
