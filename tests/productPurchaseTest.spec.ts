@@ -17,7 +17,7 @@ test('Smoke test', async ({ page }) => {
   const productName = page.locator('.page-title');
 
   await page.locator('#product-addtocart-button').click();
-  await page.locator('.showcart').click({ delay: 1000 });
+  await page.locator('.showcart').click({ delay: 3000 });
 
   const productNameInCart = page.locator('#minicart-content-wrapper .product-item-name a');
   await expect(productNameInCart).toBeVisible();
