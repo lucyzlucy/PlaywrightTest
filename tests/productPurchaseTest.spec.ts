@@ -3,7 +3,7 @@ import { test, expect, Locator } from '@playwright/test';
 test('Smoke test', async ({ page }) => {
   await page.goto('/');
 
-  await page.locator('#toggle_button').click({ delay: 1000 });
+  await page.locator('#toggle_button').click();
 
   const menuItems = page.locator('.ammenu-nav-sections > .ammenu-items > li > a');
   await clickRandomElFromList(menuItems);
