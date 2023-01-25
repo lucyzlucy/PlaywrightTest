@@ -8,14 +8,18 @@ test('Smoke test', async ({ page }) => {
   await clickRandomElFromList(menuItems);
 
   const productCategoryLinks = page.locator('.supercat-links a');
+  // await productCategoryLinks.first().waitFor();
+  // await console.log(await productCategoryLinks.all());
   await clickRandomElFromList(productCategoryLinks);
 
   const productLinks = page.locator('.product-item-link');
+  // await productLinks.first().waitFor();
+  // await console.log(await productLinks.all());
   await clickRandomElFromList(productLinks);
 
   const productName = page.locator('.page-title');
 
-  await page.locator('.tocart').click();
+  await page.locator('#product-addtocart-button').click();
   await page.locator('.showcart').click();
 
   await expect(page.locator('.product-item-name a')).toHaveText(await productName.textContent());
