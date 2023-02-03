@@ -6,9 +6,8 @@
   "scripts": {
     "test": "npx playwright test --headed",
     "report": "npx allure generate my-allure-results -o allure-report --clean",
-    "test:ci": "npm run setAllureEnv && npx playwright test productPurchaseTest",
-    "debugTest": "npx playwright test --debug",
-    "setAllureEnv": "env ALLURE_ENDPOINT=https://lucypetprojects1.testops.cloud/ ALLURE_TOKEN=607a40fb-efb2-4c06-b9f1-afcf1219f96d ALLURE_PROJECT_ID=1 ALLURE_RESULTS=my-allure-results"    
+    "test:ci": "npx playwright test productPurchaseTest",
+    "debugTest": "npx playwright test --debug"
   },
   "keywords": [],
   "author": "",

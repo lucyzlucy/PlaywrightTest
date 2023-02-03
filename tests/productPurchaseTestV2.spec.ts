@@ -16,4 +16,6 @@ test('Smoke test refactored', async ({ page }, testoptions) => {
     await productPage.openCartPreview();
     await expect(productPage.productName).toBeVisible();
     await expect(productPage.bucketProductName).toHaveText(await productPage.productName.textContent());
+
+    console.log(process.env.browser);
 });
