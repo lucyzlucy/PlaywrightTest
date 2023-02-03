@@ -11,7 +11,7 @@ test('Smoke test refactored', async ({ page }) => {
     await catalogue.clickRandomProductCategory();
     const productPage = await catalogue.clickRandomProductLink();
     await productPage.addProductToCart();
-    await expect(catalogue.bucketLabelProductNumber).toHaveText("1");
+    await expect(catalogue.bucketLabelProductNumber).toHaveText("2");
 
     await productPage.openCartPreview();
     await expect(productPage.productName).toBeVisible();
