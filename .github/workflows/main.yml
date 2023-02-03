@@ -31,6 +31,7 @@ jobs:
           ALLURE_TOKEN: 607a40fb-efb2-4c06-b9f1-afcf1219f96d
           ALLURE_PROJECT_ID: 1
           ALLURE_RESULTS: my-allure-results
+          browser: ${{ process.env.browser }}
       - uses: actions/upload-artifact@v3
         if: always()
         with:
