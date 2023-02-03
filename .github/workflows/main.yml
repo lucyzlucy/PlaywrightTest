@@ -17,12 +17,16 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: npm ci
+      - name: Install allurectl
+        run: wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_386 -O ./allurectl chmod +x ./allurectl
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         run: npm run test:ci
         env: 
           TESULTS_TOKEN: ${{ secrets.TESULTS_TOKEN }}
+      - name: Send allure report
+        run: allurectl watch
       - uses: actions/upload-artifact@v3
         if: always()
         with:

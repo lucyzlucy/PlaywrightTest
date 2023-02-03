@@ -5,14 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test --headed",
-    "test:ci": "npx playwright test productPurchaseTest",
-    "debugTest": "npx playwright test --debug"
+    "report": "npx allure generate my-allure-results -o allure-report --clean",
+    "test:ci": "npm run setAllureEnv && npx playwright test productPurchaseTest",
+    "debugTest": "npx playwright test --debug",
+    "setAllureEnv": "env ALLURE_ENDPOINT=https://lucypetprojects1.testops.cloud/ ALLURE_TOKEN=607a40fb-efb2-4c06-b9f1-afcf1219f96d ALLURE_PROJECT_ID=1 ALLURE_RESULTS=my-allure-results"    
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.29.2",
+    "@playwright/test": "^1.30.0",
+    "allure-commandline": "^2.20.1",
+    "allure-playwright": "^2.0.0-beta.25",
     "typescript": "^4.9.4"
   },
   "dependencies": {

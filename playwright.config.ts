@@ -1,5 +1,6 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 import { devices } from '@playwright/test';
+import { allureConfig } from './allureTestConfig.config';
 
 /**
  * Read environment variables from file.
@@ -30,7 +31,8 @@ const config: PlaywrightTestConfig = {
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: process.env.CI ? [ ['html'], ['list'], ['playwright-tesults-reporter', {'tesults-target': process.env.TESULTS_TOKEN}]] : 'html',
+  reporter: process.env.CI ? [['html'], ['list'], ["allure-playwright", allureConfig]] : [["allure-playwright", allureConfig]],
+  // reporter: process.env.CI ? [ ['html'], ['list'], ['playwright-tesults-reporter', {'tesults-target': process.env.TESULTS_TOKEN}]] : 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -45,19 +47,19 @@ const config: PlaywrightTestConfig = {
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'chromium',
-      use: {
-        ...devices['Desktop Chrome'],
-      },
-    },
+    // {
+    //   name: 'chromium',
+    //   use: {
+    //     ...devices['Desktop Chrome'],
+    //   },
+    // },
 
-    {
-      name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-      },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: {
+    //     ...devices['Desktop Firefox'],
+    //   },
+    // },
 
     {
       name: 'webkit',
@@ -66,7 +68,7 @@ const config: PlaywrightTestConfig = {
       },
     },
 
-    /* Test against mobile viewports. */  
+    /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
     //   use: {
