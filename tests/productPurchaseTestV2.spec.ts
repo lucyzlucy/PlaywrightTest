@@ -3,7 +3,7 @@ import { ProductCataloguePage } from '../pages/ProductCataloguePage';
 import { allure, LabelName } from "allure-playwright";
 
 test('Smoke test refactored', async ({ page }, testoptions) => {
-    allure.label({ name: LabelName.TAG, value: `$testoptions.project.name` })
+    allure.label({ name: LabelName.TAG, value: testoptions.project.name })
     const catalogue = new ProductCataloguePage(page);
     await catalogue.goto();
     await catalogue.openMenu();
