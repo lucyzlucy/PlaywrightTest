@@ -5,7 +5,8 @@ import { ProductCataloguePage } from '../pages/ProductCataloguePage';
 import { allureConfig } from '../allureTestConfig.config';
 
 
-test('Smoke test refactored', async ({ page }) => {
+test('Smoke test refactored', async ({ page }, testoptions) => {
+    process.env.browser = testoptions.project.name;
     const catalogue = new ProductCataloguePage(page);
     await catalogue.goto();
     await catalogue.openMenu();
