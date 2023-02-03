@@ -1,8 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { MainPage } from '../pages/MainPage';
-import AllureReporter, { allure, LabelName } from "allure-playwright";
 import { ProductCataloguePage } from '../pages/ProductCataloguePage';
-import { allureConfig } from '../allureTestConfig.config';
 
 
 test('Smoke test refactored', async ({ page }, testoptions) => {
