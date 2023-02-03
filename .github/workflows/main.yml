@@ -26,7 +26,7 @@ jobs:
         env: 
           TESULTS_TOKEN: ${{ secrets.TESULTS_TOKEN }}
       - name: Send allure report
-        run: allurectl watch
+        run: ./allurectl watch
       - uses: actions/upload-artifact@v3
         if: always()
         with:
