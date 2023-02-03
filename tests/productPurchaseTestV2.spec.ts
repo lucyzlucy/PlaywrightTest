@@ -1,16 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { MainPage } from '../pages/MainPage';
-import { allure, LabelName } from "allure-playwright";
+import AllureReporter, { allure, LabelName } from "allure-playwright";
 import { ProductCataloguePage } from '../pages/ProductCataloguePage';
+import { allureConfig } from '../allureTestConfig.config';
 
 
-test('Smoke test refactored', async ({ page }, testInfo) => {
-    const env = testInfo.project.name;
-    allure.id("Smoke Test");
-    allure.label({
-        "name": "environment",
-        "value": `$env`
-      })
+test('Smoke test refactored', async ({ page }) => {
     const catalogue = new ProductCataloguePage(page);
     await catalogue.goto();
     await catalogue.openMenu();
