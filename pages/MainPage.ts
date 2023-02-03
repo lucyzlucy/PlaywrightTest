@@ -24,12 +24,11 @@ export class MainPage {
     }
 
     async openMenu() {
-        await this.menuToggle.click({ delay: 1000 });
+        await this.menuToggle.click({ delay: 3000 });
     }
 
     async openCatalogue() {
         await clickRandomElFromList(this.menuItems);
-        // return new ProductCataloguePage(this.page);
     }
 
     async openCartPreview() {
