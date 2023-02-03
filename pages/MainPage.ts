@@ -8,6 +8,7 @@ export class MainPage {
     readonly menuItems: Locator;
     readonly bucketButton: Locator;
     readonly bucketProductName: Locator;
+    readonly bucketLabelProductNumber: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -15,6 +16,7 @@ export class MainPage {
         this.menuItems = page.locator('.ammenu-nav-sections > .ammenu-items > li > a');
         this.bucketButton = page.locator('.showcart')
         this.bucketProductName = page.locator('#minicart-content-wrapper .product-item-name a');
+        this.bucketLabelProductNumber = page.locator('.counter-number');
     }
 
     async goto() {
@@ -33,6 +35,5 @@ export class MainPage {
     async openCartPreview() {
         await this.bucketButton.click({ delay: 3000 });
     }
-
 
 }
