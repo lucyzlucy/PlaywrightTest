@@ -18,7 +18,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Install allurectl
-        run: wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_386 -O ./allurectl
+        run: | 
+            wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_386 -O ./allurectl
+            chmod +x ./allurectl      
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
