@@ -24,12 +24,9 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        run: npm run test:ci
+        run: ./allurectl watch -- npm run test:ci
         env: 
           TESULTS_TOKEN: ${{ secrets.TESULTS_TOKEN }}
-      - name: Send allure report
-        run: ./allurectl watch --
-        env: 
           ALLURE_ENDPOINT: https://lucypetprojects1.testops.cloud/ 
           ALLURE_TOKEN: 607a40fb-efb2-4c06-b9f1-afcf1219f96d
           ALLURE_PROJECT_ID: 1
