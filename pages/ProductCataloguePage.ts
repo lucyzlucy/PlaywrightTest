@@ -16,7 +16,6 @@ export class ProductCataloguePage extends MainPage {
   }
 
   async clickRandomProductCategory() {
-    await this.productCategoryLinks.first().waitFor();
     await clickRandomElFromList(this.productCategoryLinks);
   }
 

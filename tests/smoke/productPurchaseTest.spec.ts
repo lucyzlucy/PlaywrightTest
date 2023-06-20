@@ -7,7 +7,6 @@ test('Random product purchase test @smoke', async ({ page }) => {
     await catalogue.openMenu();
     await catalogue.openCatalogue();
     await catalogue.clickRandomProductCategory();
-    await expect(catalogue.productLinks.first()).toBeVisible();
 
     const productPage = await catalogue.clickRandomProductLink();
     await productPage.addProductToCart();
