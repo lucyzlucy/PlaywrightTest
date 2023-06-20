@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { ProductCataloguePage } from '../../pages/ProductCataloguePage';
 
-test('Smoke test refactored', async ({ page }) => {
+test('Random product purchase test @smoke', async ({ page }) => {
     const catalogue = new ProductCataloguePage(page);
     await catalogue.goto();
     await catalogue.openMenu();
