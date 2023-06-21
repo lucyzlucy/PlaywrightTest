@@ -11,7 +11,7 @@ export async function clickRandomElFromList(list: Locator) {
     const randomEl = list.nth(randomElOrder);
     console.log(await randomEl.allInnerTexts());
     await randomEl.click();
-  }
+}
 
 export function readCsvRecords(filePath: string) {
   return parse(fs.readFileSync(filePath), {
@@ -19,3 +19,4 @@ export function readCsvRecords(filePath: string) {
     skip_empty_lines: true,
   });
 }
+
