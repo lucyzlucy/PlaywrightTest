@@ -3,13 +3,12 @@ import { clickRandomElFromList } from '../utils/Helpers';
 import { MainPage } from './MainPage';
 import { ProductInfoPage } from './ProductInfoPage';
 
-export class ProductCataloguePage extends MainPage {
+export class ProductCataloguePage {
   readonly page: Page;
   readonly productCategoryLinks: Locator;
   readonly productLinks: Locator;
 
   constructor(page: Page) {
-    super(page);
     this.page = page;
     this.productCategoryLinks = page.locator('.supercat-links a');
     this.productLinks = page.locator('.product-item-link');

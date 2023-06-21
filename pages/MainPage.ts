@@ -1,6 +1,7 @@
 import { Locator, Page } from '@playwright/test';
 import { clickRandomElFromList } from '../utils/Helpers';
 import { ProductCataloguePage } from './ProductCataloguePage';
+import { LoginPage } from './LoginPage';
 
 export class MainPage {
     readonly page: Page;
@@ -9,7 +10,9 @@ export class MainPage {
     readonly bucketButton: Locator;
     readonly bucketProductName: Locator;
     readonly bucketLabelProductNumber: Locator;
+    readonly loginPageLink: Locator;
     readonly userName: Locator;
+    readonly productName: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -19,6 +22,8 @@ export class MainPage {
         this.bucketProductName = page.locator('#minicart-content-wrapper .product-item-name a');
         this.bucketLabelProductNumber = page.locator('.counter-number');
         this.userName = page.locator('.logged-in');
+        this.loginPageLink = page.getByRole('link', { name: ' Увійти' });
+        this.productName = page.locator('.page-title');
     }
 
     async goto() {
@@ -31,6 +36,12 @@ export class MainPage {
 
     async openCatalogue() {
         await clickRandomElFromList(this.menuItems);
+        return new ProductCataloguePage(this.page);
+    }
+
+    async openLoginPage() {
+        await this.loginPageLink.click();
+        return new LoginPage(this.page);
     }
 
     async openCartPreview() {

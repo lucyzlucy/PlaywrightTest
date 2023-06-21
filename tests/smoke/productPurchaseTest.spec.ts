@@ -1,18 +1,20 @@
 import { test, expect } from '@playwright/test';
 import { ProductCataloguePage } from '../../pages/ProductCataloguePage';
+import { MainPage } from '../../pages/MainPage';
 
 test('Random product purchase test @smoke', async ({ page }) => {
-    const catalogue = new ProductCataloguePage(page);
-    await catalogue.goto();
-    await catalogue.openMenu();
-    await catalogue.openCatalogue();
+    const mainPage = new MainPage(page);
+    await mainPage.goto();
+    await mainPage.openMenu();
+
+    const catalogue = await mainPage.openCatalogue();
     await catalogue.clickRandomProductCategory();
 
     const productPage = await catalogue.clickRandomProductLink();
     await productPage.addProductToCart();
-    await expect(catalogue.bucketLabelProductNumber).toHaveText("1");
+    await expect(mainPage.bucketLabelProductNumber).toHaveText("1");
 
-    await productPage.openCartPreview();
-    await expect(productPage.productName).toBeVisible();
-    await expect(productPage.bucketProductName).toHaveText(await productPage.productName.textContent());
+    await mainPage.openCartPreview();
+    await expect(mainPage.productName).toBeVisible();
+    await expect(mainPage.bucketProductName).toHaveText(await mainPage.productName.textContent());
 });
