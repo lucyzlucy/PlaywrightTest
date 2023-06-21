@@ -13,11 +13,10 @@
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.30.0",
-    "allure-commandline": "^2.20.1",
-    "allure-playwright": "^2.0.0-beta.25",
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "playwright-tesults-reporter": "^1.1.0"
+    "csv-parse": "^5.4.0",
+    "dotenv": "^16.3.1"
   }
 }

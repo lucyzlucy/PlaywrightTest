@@ -9,6 +9,7 @@ export class MainPage {
     readonly bucketButton: Locator;
     readonly bucketProductName: Locator;
     readonly bucketLabelProductNumber: Locator;
+    readonly userName: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -17,6 +18,7 @@ export class MainPage {
         this.bucketButton = page.locator('.showcart')
         this.bucketProductName = page.locator('#minicart-content-wrapper .product-item-name a');
         this.bucketLabelProductNumber = page.locator('.counter-number');
+        this.userName = page.locator('.logged-in');
     }
 
     async goto() {

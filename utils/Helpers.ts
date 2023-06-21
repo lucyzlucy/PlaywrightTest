@@ -1,4 +1,6 @@
 import { Locator } from '@playwright/test';
+import { parse } from 'csv-parse/sync';
+import fs from 'fs';
 
 export async function clickRandomElFromList(list: Locator) {
     await list.first().waitFor();
@@ -10,3 +12,10 @@ export async function clickRandomElFromList(list: Locator) {
     console.log(await randomEl.allInnerTexts());
     await randomEl.click();
   }
+
+export function readCsvRecords(filePath: string) {
+  return parse(fs.readFileSync(filePath), {
+    columns: true,
+    skip_empty_lines: true,
+  });
+}
