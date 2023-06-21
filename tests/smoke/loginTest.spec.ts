@@ -11,7 +11,7 @@ const usersFromFile = readCsvRecords("test-data/users.csv");
 users = usersFromFile.map(({ email, name }) => new User(email, name, password));
 
 for (const user of users) {
-    test.only(`Login test for ${user.name} @smoke`, async ({ page }) => {
+    test(`Login test for ${user.name} @smoke`, async ({ page }) => {
         const mainPage = new MainPage(page);
 
         await mainPage.goto();
