@@ -1,9 +1,11 @@
 name: Playwright Tests
 on:
   push:
-    branches: [master]
+    branches: 
+      - master
   pull_request:
-    branches: [master]
+    branches: 
+      - master
   schedule:
     - cron: "0 * * * *"
 jobs:
@@ -20,9 +22,8 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        run: ./allurectl watch -- npm run test:ci
-        env: 
-          - uses: actions/upload-artifact@v3
+        run: npm run test:ci
+      - uses: actions/upload-artifact@v3
         if: always()
         with:
           name: playwright-report
