@@ -6,13 +6,14 @@
   "scripts": {
     "test": "npx playwright test --grep @smoke --headed",
     "test:ci": "npx playwright test --grep @smoke",
-    "debugTest": "npx playwright test --debug"
+    "debugTest": "npx playwright test --debug",
+    "test:ui": "npx playwright test --ui"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.34.0",
+    "@playwright/test": "^1.35.0",
     "typescript": "^4.9.4"
   },
   "dependencies": {
