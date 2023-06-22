@@ -13,15 +13,16 @@ export class LoginPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.emailField = page.getByLabel('E-mail');
-        this.passwordField = page.getByLabel('Пароль');
-        this.logInButton = page.getByRole('button', { name: 'Увійти' });
+        this.emailField = page.locator('#email');
+        this.passwordField = page.locator('#pass');
+        this.logInButton = page.locator('#send2');
         this.captchaCheckbox = page.frameLocator('[title="reCAPTCHA"]').getByRole('checkbox');
     }
 
     async logIn(email: string, password: string) {
         await this.emailField.fill(email);
         await this.passwordField.fill(password);
+        await this.captchaCheckbox.waitFor();
         await this.captchaCheckbox.click();
         await this.logInButton.click();
         return new MainPage(this.page);

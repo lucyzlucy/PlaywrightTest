@@ -22,7 +22,7 @@ export class MainPage {
         this.bucketProductName = page.locator('#minicart-content-wrapper .product-item-name a');
         this.bucketLabelProductNumber = page.locator('.counter-number');
         this.userName = page.locator('.logged-in');
-        this.loginPageLink = page.getByRole('link', { name: ' Увійти' });
+        this.loginPageLink = page.locator('.authorization-link');
         this.productName = page.locator('.page-title');
     }
 
