@@ -3,7 +3,7 @@ import { parse } from 'csv-parse/sync';
 import fs from 'fs';
 
 export async function clickRandomElFromList(list: Locator) {
-    await list.first().waitFor();
+    await list.first().scrollIntoViewIfNeeded();
     const elLength = await list.count();
     console.log(`Elements count: ${elLength}`);
     const randomElOrder = Math.floor(Math.random() * ((elLength-1) - 0) + 0);
