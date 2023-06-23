@@ -1,6 +1,5 @@
 import type { PlaywrightTestConfig } from '@playwright/test';
 import { devices } from '@playwright/test';
-import { allureConfig } from './allureTestConfig.config';
 
 /**
  * Read environment variables from file.
@@ -29,9 +28,9 @@ const config: PlaywrightTestConfig = {
   /* Retry on CI only */
   retries: process.env.CI ? 0 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 3 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: process.env.CI ? [['html'], ['list'], ["allure-playwright", allureConfig]] : [["list"]],
+  reporter: [['html'], ['list']],
   // reporter: process.env.CI ? [ ['html'], ['list'], ['playwright-tesults-reporter', {'tesults-target': process.env.TESULTS_TOKEN}]] : 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {

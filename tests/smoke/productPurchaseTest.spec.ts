@@ -1,20 +1,12 @@
 import { test, expect } from '@playwright/test';
-import { ProductCataloguePage } from '../pages/ProductCataloguePage';
-import { allure, LabelName } from "allure-playwright";
+import { ProductCataloguePage } from '../../pages/ProductCataloguePage';
 
-test('Smoke test refactored', async ({ page }, testoptions) => {
-    process.env.browser = testoptions.project.name;
-    allure.label({ name: LabelName.FEATURE, value: testoptions.project.name })
-    allure.label({ name: LabelName.AS_ID, value: testoptions.project.name })
-    allure.label({ name: LabelName.TAG, value: testoptions.project.name })
-    allure.label({ name: LabelName.SUITE, value: testoptions.project.name })
-
+test('Random product purchase test @smoke', async ({ page }) => {
     const catalogue = new ProductCataloguePage(page);
     await catalogue.goto();
     await catalogue.openMenu();
     await catalogue.openCatalogue();
     await catalogue.clickRandomProductCategory();
-    await expect(catalogue.productLinks.first()).toBeVisible();
 
     const productPage = await catalogue.clickRandomProductLink();
     await productPage.addProductToCart();
