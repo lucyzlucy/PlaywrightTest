@@ -1,8 +1,9 @@
 import { Locator, Page } from '@playwright/test';
 import { clickRandomElFromList, dragAndDropOnSlider } from '../utils/Helpers';
 import { ProductInfoPage } from './ProductInfoPage';
+import { MainPage } from './MainPage';
 
-export class ProductCataloguePage extends MainPage {
+export class ProductCataloguePage {
   readonly page: Page;
   readonly productCategoryLinks: Locator;
   readonly productLinks: Locator;
@@ -16,7 +17,6 @@ export class ProductCataloguePage extends MainPage {
   readonly productPrice: Locator;
 
   constructor(page: Page) {
-    super(page);
     this.page = page;
     this.productCategoryLinks = page.locator('.supercat-links a');
     this.productLinks = page.locator('.product-item-link');
