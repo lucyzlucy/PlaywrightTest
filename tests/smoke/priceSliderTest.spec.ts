@@ -1,52 +1,39 @@
 import { test, expect } from '@playwright/test';
+import { MainPage } from '../../pages/MainPage';
+import { getNumberFromString } from '../../utils/Helpers';
 
-test.only('test', async ({ page }) => {
-  await page.goto('https://www.gorgany.com/sporiadzhennia');
-  await page.getByRole('link', { name: 'Рюкзаки для походів' }).click();
+const targetValueLeft = 0.1;
+const targetValueRight = -0.1;
 
+test('Verify products can be filtered by price @smoke', async ({ page }) => {
+  const mainPage = new MainPage(page);
+  await mainPage.goto();
+  await mainPage.openMenu();
 
-  // drag-and-drop target value in percentage
-  const targetValueLeft = 0.1;
-  const targetValueRight = -0.1;
+  const catalogue = await mainPage.openCatalogue();
+  await catalogue.clickRandomProductCategory();
 
-  const slider = page.locator(".ui-slider");
+  const initialMinPrice = await catalogue.getMinPriceFilterValue();
+  const initialMaxPrice = await catalogue.getMaxPriceFilterValue();
 
-  const minPrice = await page.locator(".amshopby-slider-display").locator("i").first().allInnerTexts();
-  console.log(minPrice);
-  const maxPrice = page.locator(".amshopby-slider-display i:nth-child(5)");
-  await maxPrice.waitFor();
-  await console.log(await maxPrice.textContent());
+  await catalogue.dragAndDropMinPriceHandle(targetValueLeft);
+  await catalogue.dragAndDropMaxPriceHandle(targetValueRight);
 
-  // retrieving the slider handle HTML element
-  const leftSliderHandle = page.locator(".ui-slider-handle").first();
+  const changedMinPrice = await catalogue.getMinPriceFilterValue();
+  const changedMaxPrice = await catalogue.getMaxPriceFilterValue();
 
-  // retrieving the slider handle HTML element
-  const rightSliderHandle = page.locator(".ui-slider-handle").last();
+  expect(changedMinPrice, `Changed minimum price of ${changedMinPrice} should be greater that initial ${initialMinPrice}`).toBeGreaterThan(initialMinPrice);
+  expect(changedMaxPrice, `Changed maximum price of ${changedMaxPrice} should be less that initial ${initialMaxPrice}`).toBeLessThan(initialMaxPrice);
 
+ 
+  const productPrices = await catalogue.getAllProductPrices();
 
-  // getting the slider bounding box size
-  const sliderBoundingBox = await slider.boundingBox();
+  productPrices.forEach(priceText => {
+    expect.soft(getNumberFromString(priceText), `Price of ${priceText} should be greater that minimum filter ${changedMinPrice}`).toBeGreaterThanOrEqual(changedMinPrice);
+  })
 
-  // performing the drag-and-drop interaction
-  await leftSliderHandle.dragTo(leftSliderHandle, {
-    force: true,
-    targetPosition: {
-      // moving the slider to the target value in %
-      x: sliderBoundingBox.width * targetValueLeft,
-      y: 0,
-    },
-  });
-
-  // performing the drag-and-drop interaction
-  await rightSliderHandle.dragTo(rightSliderHandle, {
-    force: true,
-    targetPosition: {
-      // moving the slider to the target value in %
-      x: sliderBoundingBox.width * targetValueRight,
-      y: 0,
-    },
-  });
-
-
+  productPrices.forEach(priceText => {
+    expect.soft(getNumberFromString(priceText), `Price of ${priceText} should be less that maximum filter ${changedMaxPrice}`).toBeLessThanOrEqual(changedMaxPrice);
+  })
 
 });
