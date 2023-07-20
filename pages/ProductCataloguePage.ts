@@ -55,7 +55,7 @@ export class ProductCataloguePage {
   }
 
   private async dragAndDropPriceHandle(handleLocator: Locator, targetValue: number) {
-    const responsePromise = this.page.waitForResponse(request => request.url().includes('price'));
+    const responsePromise = this.getFilteredByPriceListResponse();
     await dragAndDropOnSlider(handleLocator, this.slider, targetValue);
     await responsePromise;
   }
@@ -66,7 +66,7 @@ export class ProductCataloguePage {
     let productPricesAccumulated = await this.productPrice.allInnerTexts();
   
     while (await this.nextPageButton.isVisible()) {
-      const responsePromise3 = this.page.waitForResponse(request => request.url().includes('price'));
+      const responsePromise3 = this.getFilteredByPriceListResponse();
       await this.nextPageButton.click();
       await responsePromise3;
       await this.productsLoader.waitFor({ state: 'hidden' });
@@ -82,6 +82,10 @@ export class ProductCataloguePage {
     const priceFilterValue = await priceFilterLocator.textContent();
     console.log(`Price filter value: ${priceFilterValue}`);
     return Number.parseInt(priceFilterValue);
+  }
+
+  private getFilteredByPriceListResponse() {
+    return this.page.waitForResponse(request => request.url().includes('price'));
   }
 
 }
