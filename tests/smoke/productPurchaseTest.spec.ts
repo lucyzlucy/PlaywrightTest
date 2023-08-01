@@ -1,20 +1,17 @@
-import { test, expect } from '@playwright/test';
-import { ProductCataloguePage } from '../../pages/ProductCataloguePage';
-import { MainPage } from '../../pages/MainPage';
+import { expect } from '@playwright/test';
+import { test } from "../base";
 
-test('Random product purchase test @smoke', async ({ page }) => {
-    const mainPage = new MainPage(page);
-    await mainPage.goto();
-    await mainPage.openMenu();
+test('Random product purchase test @smoke', async ({ app }) => {
+    await app.mainPage.goto();
+    await app.mainPage.openMenu();
+    await app.mainPage.openCatalogue();
+    await app.catalogue.clickRandomProductCategory();
 
-    const catalogue = await mainPage.openCatalogue();
-    await catalogue.clickRandomProductCategory();
+    await app.catalogue.clickRandomProductLink();
+    await app.productInfoPage.addProductToCart();
+    await expect(app.mainPage.bucketLabelProductNumber).toHaveText("1");
 
-    const productPage = await catalogue.clickRandomProductLink();
-    await productPage.addProductToCart();
-    await expect(mainPage.bucketLabelProductNumber).toHaveText("1");
-
-    await mainPage.openCartPreview();
-    await expect(mainPage.productName).toBeVisible();
-    await expect(mainPage.bucketProductName).toHaveText(await mainPage.productName.textContent());
+    await app.mainPage.openCartPreview();
+    await expect(app.productInfoPage.productName).toBeVisible();
+    await expect(app.mainPage.bucketProductName).toHaveText(await app.productInfoPage.productName.textContent());
 });

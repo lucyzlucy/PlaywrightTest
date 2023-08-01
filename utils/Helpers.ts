@@ -20,3 +20,24 @@ export function readCsvRecords(filePath: string) {
   });
 }
 
+export async function dragAndDropOnSlider(elementToDrag: Locator, slider: Locator, targetValue: number) {
+  await elementToDrag.waitFor();
+  await elementToDrag.scrollIntoViewIfNeeded();
+
+  await slider.scrollIntoViewIfNeeded();
+
+  const sliderBoundingBox = await slider.boundingBox();
+
+  await console.log(`Slider width: ${sliderBoundingBox.width}`)
+  await elementToDrag.dragTo(elementToDrag, {
+    force: true,
+    targetPosition: {
+      x: sliderBoundingBox.width * targetValue,
+      y: 0,
+    },
+  });
+}
+
+export function getNumberFromString(str: string): number {
+  return Number.parseInt(str.replace(/\s+/g, ''));
+}

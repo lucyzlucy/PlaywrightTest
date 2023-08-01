@@ -6,14 +6,17 @@
   "scripts": {
     "test": "npx playwright test --grep @smoke --headed",
     "test:ci": "npx playwright test --grep @smoke",
-    "debugTest": "npx playwright test --debug",
     "test:ui": "npx playwright test --ui"
+    "test:debug": "npx playwright test --debug",
+    "trace": "npx playwright show-trace playwright-report/trace.zip"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.35.0",
+    "allure-commandline": "^2.20.1",
+    "allure-playwright": "^2.0.0-beta.25",
     "typescript": "^4.9.4"
   },
   "dependencies": {
