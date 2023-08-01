@@ -12,7 +12,6 @@ export class MainPage {
     readonly bucketLabelProductNumber: Locator;
     readonly loginPageLink: Locator;
     readonly userName: Locator;
-    readonly productName: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -23,7 +22,6 @@ export class MainPage {
         this.bucketLabelProductNumber = page.locator('.counter-number');
         this.userName = page.locator('.logged-in');
         this.loginPageLink = page.locator('.authorization-link');
-        this.productName = page.locator('.page-title');
     }
 
     async goto() {
@@ -36,12 +34,10 @@ export class MainPage {
 
     async openCatalogue() {
         await clickRandomElFromList(this.menuItems);
-        return new ProductCataloguePage(this.page);
     }
 
     async openLoginPage() {
         await this.loginPageLink.click();
-        return new LoginPage(this.page);
     }
 
     async openCartPreview() {

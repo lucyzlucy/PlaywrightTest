@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npx playwright test --grep @smoke --headed",
     "test:ci": "npx playwright test --grep @smoke",
-    "test:ui": "npx playwright test --ui"
+    "test:ui": "npx playwright test --ui",
     "test:debug": "npx playwright test --debug",
     "trace": "npx playwright show-trace playwright-report/trace.zip"
   },
