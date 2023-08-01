@@ -1,7 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 import { clickRandomElFromList, dragAndDropOnSlider } from '../utils/Helpers';
 import { ProductInfoPage } from './ProductInfoPage';
-import { MainPage } from './MainPage';
 
 export class ProductCataloguePage {
   readonly page: Page;

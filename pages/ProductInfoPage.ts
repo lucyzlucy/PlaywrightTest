@@ -1,10 +1,9 @@
-import { expect, Locator, Page } from '@playwright/test';
-import { MainPage } from './MainPage';
+import { Locator, Page } from '@playwright/test';
 
 export class ProductInfoPage {
     readonly page: Page;
-    readonly productName: Locator;
     readonly addToCartButton: Locator;
+    readonly productName: Locator;
 
     constructor(page: Page) {
         this.page = page;
